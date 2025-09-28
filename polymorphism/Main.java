@@ -15,11 +15,17 @@ class SmsSender implements NotificationSender {
 }
 
 public class Main {
+
+  public static void notifyUser(NotificationSender sender, String message) {
+    sender.sendNotification(message);
+  }
+
   public static void main(String[] args) {
     EmailSender sender1 = new EmailSender();
     SmsSender sender2 = new SmsSender();
 
-    sender1.sendNotification("Dear HR, .....");
-    sender2.sendNotification("Happy Birhday!");
+    notifyUser(sender1, "Hello");
+    notifyUser(sender2, "Hello");
+
   }
 }
