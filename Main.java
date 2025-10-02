@@ -1,3 +1,5 @@
+import java.util.*;
+
 class Point {
   private double x;
   private double y;
@@ -18,6 +20,36 @@ class Point {
   }
 }
 
+// Composition
+class Room {
+  private String name;
+
+  public Room(String name) {
+    this.name = name;
+  }
+
+  public void describe() {
+    System.out.println("This is the " + name);
+  }
+}
+
+class House {
+  private List<Room> rooms;
+
+  public House() {
+    rooms = new ArrayList<>();
+    rooms.add(new Room("Living Room"));
+    rooms.add(new Room("Kitchen"));
+    rooms.add(new Room("Bedroom"));
+  }
+
+  public void showHouseLayout() {
+    for (Room room : rooms) {
+      room.describe();
+    }
+  }
+}
+
 public class Main {
   public static void main(String[] args) {
     Point p = new Point(32, 32);
@@ -25,5 +57,11 @@ public class Main {
       p.scale();
       p.print();
     }
+
+    // composition
+    House newHouse = new House();
+
+    newHouse.showHouseLayout();
   }
+
 }
