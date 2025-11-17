@@ -23,17 +23,18 @@ class UPIPayment(PaymentMethod):
         # Logic for UPI processing
 
 
-# Final Class
 class PaymentProcessor:
     def process(self, payment_method: PaymentMethod, amount: float):
         payment_method.process_payment(amount)
 
-# Usage
-credit_card_payment = CreditCardPayment()
-paypal_payment = PayPalPayment()
-upi_payment = UPIPayment()
 
-payment_processor = PaymentProcessor()
-payment_processor.process(credit_card_payment, 100)
-payment_processor.process(paypal_payment, 50)
-payment_processor.process(upi_payment, 200)
+class CheckoutService:
+    def process_payment(self, method: PaymentMethod, amount):
+        processor = PaymentProcessor()
+        processor.process(method, amount)
+
+# Usage
+checkout = CheckoutService()
+checkout.process_payment(CreditCardPayment(), 100.00)
+checkout.process_payment(PayPalPayment(), 100.00)
+checkout.process_payment(UPIPayment(), 100.00)
